@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Rss } from "lucide-react";
+import { Code2, Briefcase, Mail, Rss } from "lucide-react";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
 import { siteConfig } from "@/app/data";
 
 const links = [
-	{ label: "GitHub", icon: Github, href: siteConfig.github },
-	{ label: "LinkedIn", icon: Linkedin, href: siteConfig.linkedin },
+	{ label: "GitHub", icon: Code2, href: siteConfig.github },
+	{ label: "LinkedIn", icon: Briefcase, href: siteConfig.linkedin },
 	{ label: "Email", icon: Mail, href: `mailto:${siteConfig.email}` },
 	{ label: "RSS", icon: Rss, href: "#" },
 ];
