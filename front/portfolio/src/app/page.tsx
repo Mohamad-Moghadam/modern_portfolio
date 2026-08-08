@@ -7,10 +7,12 @@ import { Blog } from "@/app/components/sections/Blog";
 import { Contact } from "@/app/components/sections/Contact";
 import { Footer } from "@/app/components/sections/Footer";
 import { BinaryRain } from "@/app/components/BinaryRain";
+import { CustomCursor } from "@/app/components/CustomCursor"; // ← add this
 
 export default function Home() {
 	return (
 		<div className="relative min-h-screen overflow-x-hidden bg-garden-950 text-slate-200">
+			<CustomCursor /> {/* ← add this */}
 			<BinaryRain />
 			<Navbar />
 			<main className="relative z-10">

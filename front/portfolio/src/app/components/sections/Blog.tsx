@@ -24,6 +24,7 @@ export function Blog() {
 				{blogs.slice(0, visible).map((post, i) => (
 					<motion.article
 						key={post.id}
+						data-cursor-hover
 						initial={{ opacity: 0, x: -20 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}

@@ -97,3 +97,9 @@ html {
 ::-webkit-scrollbar-thumb:hover {
 	background: rgba(16, 185, 129, 0.5);
 }
+
+@media (pointer: fine) {
+	* {
+		cursor: none !important;
+	}
+}
