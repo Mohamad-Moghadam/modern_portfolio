@@ -5,26 +5,26 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+	html {
+		scroll-behavior: smooth;
+	}
 
-  ::selection {
-    background: rgba(16, 185, 129, 0.3);
-    color: #f0fdf4;
-  }
+	::selection {
+		background: rgba(16, 185, 129, 0.3);
+		color: #f0fdf4;
+	}
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #060c08;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(16, 185, 129, 0.25);
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(16, 185, 129, 0.5);
-  }
+	::-webkit-scrollbar {
+		width: 6px;
+	}
+	::-webkit-scrollbar-track {
+		background: #060c08;
+	}
+	::-webkit-scrollbar-thumb {
+		background: rgba(16, 185, 129, 0.25);
+		border-radius: 3px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: rgba(16, 185, 129, 0.5);
+	}
 }

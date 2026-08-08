@@ -2,9 +2,8 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
+    "./src/app/**/*.{ts,tsx}",
+    "./src/app/lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -37,10 +36,10 @@ const config: Config = {
         mono: ["JetBrains Mono", "monospace"],
       },
       animation: {
-        "blink": "blink 1s step-end infinite",
+        blink: "blink 1s step-end infinite",
         "scroll-pulse": "scrollPulse 2s ease-in-out infinite",
         "glow-pulse": "glowPulse 5s ease-in-out infinite",
-        "float": "float 6s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
         blink: {
