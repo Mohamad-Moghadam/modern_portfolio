@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { TerminalCard } from "@/app/components/ui/TerminalCard";
 import { Tag } from "@/app/components/ui/Tag";
-import { siteConfig } from "@/app/lib/data";
+import { siteConfig } from "@/app/data";
 
 export function About() {
 	return (

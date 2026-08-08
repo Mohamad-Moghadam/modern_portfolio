@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Rss } from "lucide-react";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { siteConfig } from "@/app/lib/data";
+import { siteConfig } from "@/app/data";
 
 const links = [
 	{ label: "GitHub", icon: Github, href: siteConfig.github },

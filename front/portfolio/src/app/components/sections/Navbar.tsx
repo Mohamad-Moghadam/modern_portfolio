@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { navItems } from "@/app/lib/data";
+import { navItems } from "@/app/data";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {

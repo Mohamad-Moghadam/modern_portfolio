@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Tag } from "@/app/components/ui/Tag";
 import { Button } from "@/app/components/ui/Button";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { blogs } from "@/app/lib/data";
+import { blogs } from "@/app/data";
 
 export function Blog() {
 	const [visible, setVisible] = useState(3);

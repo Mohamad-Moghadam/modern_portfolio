@@ -3,7 +3,7 @@
 import { GlowCard } from "@/app/components/ui/GlowCard";
 import { Tag } from "@/app/components/ui/Tag";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { projects } from "@/app/lib/data";
+import { projects } from "@/app/data";
 import { ExternalLink } from "lucide-react";
 
 export function Projects() {
