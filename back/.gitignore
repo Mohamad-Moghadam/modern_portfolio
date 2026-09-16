@@ -1,0 +1,21 @@
+# secrets — never commit these
+.env
+*.local
+
+# Python toolbox and junk
+/env/
+__pycache__/
+*.pyc
+
+# Django stuff
+*.sqlite3
+staticfiles/
+media/
+
+# Node / Next.js junk
+node_modules/
+.next/
+
+# editors
+.idea/
+.vscode/

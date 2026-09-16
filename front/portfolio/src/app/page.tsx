@@ -7,23 +7,51 @@ import { Blog } from "@/app/components/sections/Blog";
 import { Contact } from "@/app/components/sections/Contact";
 import { Footer } from "@/app/components/sections/Footer";
 import { BinaryRain } from "@/app/components/BinaryRain";
-import { CustomCursor } from "@/app/components/CustomCursor"; // ← add this
+import { CustomCursor } from "@/app/components/CustomCursor";
+import { getHome, getPosts, getSettings } from "@/lib/api";
 
-export default function Home() {
+export const revalidate = 3600;
+
+export default async function Home() {
+	const [settings, home, posts] = await Promise.all([
+		getSettings(),
+		getHome(),
+		getPosts(1),
+	]);
+
 	return (
 		<div className="relative min-h-screen overflow-x-hidden bg-garden-950 text-slate-200">
-			<CustomCursor /> {/* ← add this */}
+			<CustomCursor />
 			<BinaryRain />
-			<Navbar />
+			<Navbar title={settings.title} resumeUrl={settings.resume} />
 			<main className="relative z-10">
-				<Hero />
-				<About />
-				<Skills />
-				<Projects />
-				<Blog />
-				<Contact />
+				<Hero tagline={settings.tagline} />
+				<About
+					profile={{
+						name: settings.title,
+						role: settings.role,
+						location: settings.location,
+						education: home.profile.education,
+						experience: home.profile.experience,
+					}}
+					description={settings.description}
+				/>
+				<Skills skills={home.skills} />
+				<Projects projects={home.featured_projects} />
+				<Blog posts={posts.results} />
+				<Contact
+					email={settings.email}
+					githubUrl={settings.github_url}
+					linkedinUrl={settings.linkedin_url}
+					twitterUrl={settings.twitter_url}
+				/>
 			</main>
-			<Footer />
+			<Footer
+				email={settings.email}
+				githubUrl={settings.github_url}
+				linkedinUrl={settings.linkedin_url}
+				resumeUrl={settings.resume}
+			/>
 		</div>
 	);
 }

@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Tag } from "@/app/components/ui/Tag";
 import { Button } from "@/app/components/ui/Button";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { blogs } from "@/app/data";
+import type { PostListItem } from "@/lib/types";
 
-export function Blog() {
+export function Blog({ posts }: { posts: PostListItem[] }) {
 	const [visible, setVisible] = useState(3);
 
 	return (
@@ -21,65 +22,73 @@ export function Blog() {
 			/>
 
 			<div className="mx-auto flex max-w-3xl flex-col gap-5">
-				{blogs.slice(0, visible).map((post, i) => (
-					<motion.article
-						key={post.id}
-						data-cursor-hover
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.4, delay: i * 0.08 }}
-						whileHover={{
-							x: 6,
-							boxShadow: "0 12px 40px rgba(16,185,129,0.06)",
-							borderColor: "rgba(16,185,129,0.2)",
-						}}
-						className="cursor-pointer rounded-2xl border border-garden-500/[0.08] bg-garden-500/[0.03] p-7 transition-colors duration-300"
-					>
-						<div className="mb-2 flex items-center justify-between gap-2 flex-wrap">
-							<div className="flex flex-wrap gap-2">
-								{post.tags.map((t) => (
-									<Tag key={t} color="#a855f7">
-										{t}
-									</Tag>
-								))}
+				{posts.slice(0, visible).map((post, i) => (
+					<Link key={post.slug} href={`/blog/${post.slug}`} className="block">
+						<motion.article
+							data-cursor-hover
+							initial={{ opacity: 0, x: -20 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.4, delay: i * 0.08 }}
+							whileHover={{
+								x: 6,
+								boxShadow: "0 12px 40px rgba(16,185,129,0.06)",
+								borderColor: "rgba(16,185,129,0.2)",
+							}}
+							className="rounded-2xl border border-garden-500/[0.08] bg-garden-500/[0.03] p-7 transition-colors duration-300"
+						>
+							<div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+								<div className="flex flex-wrap gap-2">
+									{post.tags.map((t) => (
+										<Tag key={t.slug} color="#a855f7">
+											{t.name}
+										</Tag>
+									))}
+								</div>
+								<span className="font-mono text-xs text-slate-600">
+									{post.read_time} min read
+								</span>
 							</div>
-							<span className="font-mono text-xs text-slate-600">
-								{post.readTime} read
-							</span>
-						</div>
 
-						<h3 className="mb-2 text-lg font-bold leading-snug text-garden-50">
-							{post.title}
-						</h3>
+							<h3 className="mb-2 text-lg font-bold leading-snug text-garden-50">
+								{post.title}
+							</h3>
 
-						<p className="mb-3 text-sm leading-relaxed text-slate-400">
-							{post.excerpt}
-						</p>
+							<p className="mb-3 text-sm leading-relaxed text-slate-400">
+								{post.excerpt}
+							</p>
 
-						<div className="flex items-center justify-between">
-							<span className="font-mono text-xs text-slate-600">
-								{new Date(post.date).toLocaleDateString("en-US", {
-									year: "numeric",
-									month: "long",
-									day: "numeric",
-								})}
-							</span>
-							<span className="font-mono text-[13px] text-garden-500">
-								Read more ⟶
-							</span>
-						</div>
-					</motion.article>
+							<div className="flex items-center justify-between">
+								<span className="font-mono text-xs text-slate-600">
+									{post.published_at &&
+										new Date(post.published_at).toLocaleDateString("en-US", {
+											year: "numeric",
+											month: "long",
+											day: "numeric",
+										})}
+								</span>
+								<span className="font-mono text-[13px] text-garden-500">
+									Read more ⟶
+								</span>
+							</div>
+						</motion.article>
+					</Link>
 				))}
 
-				{visible < blogs.length && (
+				{posts.length === 0 && (
+					<p className="py-10 text-center font-mono text-sm text-slate-600">
+						$ ls ~/thoughts → empty. Publish a post from the admin.
+					</p>
+				)}
+
+				{visible < posts.length && (
 					<div className="mt-4 text-center">
-						<Button variant="ghost" onClick={() => setVisible(blogs.length)}>
+						<Button variant="ghost" onClick={() => setVisible(posts.length)}>
 							Load more entries ↓
 						</Button>
 					</div>
 				)}
 			</div>
 		</section>
-	);
+	);	
 }

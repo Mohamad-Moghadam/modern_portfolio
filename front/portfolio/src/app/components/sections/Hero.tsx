@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/app/components/ui/Button";
 
-export function Hero() {
+export function Hero({ tagline }: { tagline?: string }) {
 	const fullText = 'console.garden("hello, world 🌱")';
 	const [typed, setTyped] = useState("");
 
@@ -100,9 +100,8 @@ export function Hero() {
 					transition={{ delay: 0.8 }}
 					className="mt-4 max-w-[600px] text-[clamp(16px,1.8vw,20px)] leading-relaxed text-slate-400"
 				>
-					Full-stack engineer crafting elegant systems where code grows like
-					well-tended gardens — rooted in fundamentals, branching into
-					innovation.
+					{tagline ||
+						"Full-stack engineer crafting elegant systems where code grows like well-tended gardens — rooted in fundamentals, branching into innovation."}
 				</motion.p>
 
 				<motion.div

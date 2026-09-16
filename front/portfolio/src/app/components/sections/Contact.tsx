@@ -1,18 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Briefcase, Mail, Rss } from "lucide-react";
+import { Code2, Briefcase, Mail, AtSign } from "lucide-react";
 import { SectionHeading } from "@/app/components/ui/SectionHeading";
-import { siteConfig } from "@/app/data";
 
-const links = [
-	{ label: "GitHub", icon: Code2, href: siteConfig.github },
-	{ label: "LinkedIn", icon: Briefcase, href: siteConfig.linkedin },
-	{ label: "Email", icon: Mail, href: `mailto:${siteConfig.email}` },
-	{ label: "RSS", icon: Rss, href: "#" },
-];
+export function Contact({
+	email,
+	githubUrl,
+	linkedinUrl,
+	twitterUrl,
+}: {
+	email: string;
+	githubUrl: string;
+	linkedinUrl: string;
+	twitterUrl: string;
+}) {
+	const links = [
+		{ label: "GitHub", icon: Code2, href: githubUrl },
+		{ label: "LinkedIn", icon: Briefcase, href: linkedinUrl },
+		{ label: "Twitter", icon: AtSign, href: twitterUrl },
+		{ label: "Email", icon: Mail, href: email ? `mailto:${email}` : "" },
+	].filter((l) => l.href);
 
-export function Contact() {
 	return (
 		<section
 			id="contact"
@@ -53,6 +62,8 @@ export function Contact() {
 						<motion.a
 							key={link.label}
 							href={link.href}
+							target={link.href.startsWith("mailto") ? undefined : "_blank"}
+							rel="noopener noreferrer"
 							initial={{ opacity: 0, y: 12 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}

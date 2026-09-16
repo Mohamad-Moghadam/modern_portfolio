@@ -3,9 +3,30 @@
 import { motion } from "framer-motion";
 import { TerminalCard } from "@/app/components/ui/TerminalCard";
 import { Tag } from "@/app/components/ui/Tag";
-import { siteConfig } from "@/app/data";
 
-export function About() {
+export function About({
+	profile,
+	description,
+}: {
+	profile: {
+		name: string;
+		role: string;
+		location: string;
+		education: string;
+		experience: string;
+	};
+	description: string;
+}) {
+	const lines = [
+		{ key: "name", value: profile.name },
+		{ key: "role", value: profile.role },
+		{ key: "location", value: profile.location },
+		{ key: "education", value: profile.education },
+		{ key: "experience", value: profile.experience },
+	].filter((l) => l.value);
+
+	const paragraphs = description.split(/\n{2,}/).filter(Boolean);
+
 	return (
 		<section
 			id="about"
@@ -15,13 +36,7 @@ export function About() {
 			<div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
 				<TerminalCard
 					title="about.sh"
-					lines={[
-						{ key: "name", value: siteConfig.name },
-						{ key: "role", value: siteConfig.role },
-						{ key: "location", value: siteConfig.location },
-						{ key: "education", value: siteConfig.education },
-						{ key: "experience", value: siteConfig.experience },
-					]}
+					lines={lines}
 					comment="where code meets cultivation 🌿"
 				/>
 
@@ -38,19 +53,23 @@ export function About() {
 						</span>{" "}
 						<span className="text-garden-50">from Seed to Tree</span>
 					</h2>
-					<p className="mt-5 text-base leading-relaxed text-slate-400">
-						I&apos;m a computer scientist who believes the best code, like the
-						best gardens, requires patience, intention, and a deep understanding
-						of the soil it grows in. From low-level systems programming to
-						building delightful user interfaces, I tend every layer of the
-						stack.
-					</p>
-					<p className="mt-4 text-base leading-relaxed text-slate-400">
-						When I&apos;m not writing code, I&apos;m writing about code —
-						exploring how computational thinking mirrors natural processes, and
-						how the elegance of a well-pruned algorithm rivals any botanical
-						arrangement.
-					</p>
+
+					{paragraphs.map((p, i) => (
+						<p
+							key={i}
+							className={`text-base leading-relaxed text-slate-400 ${
+								i === 0 ? "mt-5" : "mt-4"
+							}`}
+						>
+							{p}
+						</p>
+					))}
+					{paragraphs.length === 0 && (
+						<p className="mt-5 text-base leading-relaxed text-slate-400">
+							Add a description in the Django admin to fill this space.
+						</p>
+					)}
+
 					<div className="mt-6 flex flex-wrap gap-3">
 						{[
 							"Open Source",

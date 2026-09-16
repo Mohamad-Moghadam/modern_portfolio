@@ -1,0 +1,26 @@
+services:
+  backend:
+    image: ghcr.io/mohamad-moghadam/portfolio-backend:latest
+    env_file: .env
+    volumes:
+      - app_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    image: ghcr.io/mohamad-moghadam/portfolio-frontend:latest
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - app_data:/app/data:ro
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
+volumes:
+  app_data:
