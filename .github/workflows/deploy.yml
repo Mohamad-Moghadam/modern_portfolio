@@ -39,7 +39,7 @@ jobs:
           push: true
           tags: ${{ env.FRONTEND_IMAGE }}:latest
           build-args: |
-            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_DJANGO_API_URL=${{ vars.NEXT_PUBLIC_DJANGO_API_URL }}
 
   deploy:
     needs: build-push

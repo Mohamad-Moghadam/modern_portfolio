@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import CommentForm from "@/app/components/ui/CommentForm";
 import { formatDate, getPost, mediaUrl } from "@/lib/api";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 

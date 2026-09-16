@@ -10,7 +10,7 @@ import { BinaryRain } from "@/app/components/BinaryRain";
 import { CustomCursor } from "@/app/components/CustomCursor";
 import { getHome, getPosts, getSettings } from "@/lib/api";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
 	const [settings, home, posts] = await Promise.all([

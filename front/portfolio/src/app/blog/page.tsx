@@ -3,7 +3,7 @@ import Link from "next/link";
 import { formatDate, getPosts } from "@/lib/api";
 import type { Paginated, PostListItem } from "@/lib/types";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = { title: "Blog" };
 

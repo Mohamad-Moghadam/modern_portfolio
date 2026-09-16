@@ -38,4 +38,4 @@ jobs:
       - run: pnpm lint
       - run: pnpm build
         env:
-          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_DJANGO_API_URL: ${{ vars.NEXT_PUBLIC_DJANGO_API_URL }}
